@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-    var Budget = sequelize.define("Budget", {
+    var BucketItem = sequelize.define("BucketItem", {
       
       
       description: {
@@ -14,24 +14,29 @@ module.exports = function(sequelize, DataTypes) {
         
       },
 
-      amount: {
-        type: DataTypes.DECIMAL(10,2),
+      imagelink: {
+        type: DataTypes.TEXT,
         allowNull: false,
+        
+      },
+
+      public: {
+        type: Boolean,
+        default: false,
         
       }
 
     });
   
-   Budget.associate = function(models) {
+   BucketItem.associate = function(models) {
       // We're saying that a budgett should belong to an user
       // A Budget can't be created without an User due to the foreign key constraint
-      Budget.belongsTo(models.Users, {
-        foreignKey: {
-          allowNull: false
+      BucketItem.hasMany(models.Budget, {
+        onDelete: "cascade"
         }
-      });
+      );
     };
   
-    return Budget;
+    return BucketItem;
   };
   

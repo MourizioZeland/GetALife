@@ -27,14 +27,14 @@ Users.associate = function(models) {
         foreignKey: {
           allowNull: false
     
-    });
+        }});
   };
 
  
 
 
 
-  return Users;
+  return Comments;
 
   
 };
